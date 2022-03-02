@@ -1,0 +1,40 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 14px/1.4 Georgia, Serif;
+	background-color: cadetblue;
+}
+
+#contenedor {
+	margin: 50px;
+}
+
+p {
+	margin: 20px 0;
+}
+
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+
+tr:nth-of-type(odd) { /* Estilo Zebra para las filas */
+	background: gray;
+}
+
+th {
+	background: blue;
+	color: white;
+	font-weight: bold;
+}
+
+td, th {
+	padding: 6px;
+	border: 1px solid #ccc;
+	text-align: left;
+}
