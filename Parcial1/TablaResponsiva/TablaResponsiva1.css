@@ -1,7 +1,26 @@
 @media only screen and (max-width: 800px) 
     {
-		body{
-			background-color: crimson;
+		/* Cambiar el display de los elementos de tabla a block */
+		/*----------------------------------------------------- */
+		table, thead, tbody, th, td, tr {
+			display: block;
+		}
+
+        tr { border: 1px solid #ccc; }
+
+		/* Esconder los encabezados de la tabla */
+		/*------------------------------------- */
+		thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+		td {
+			position: relative;      /* Cada campo ahora sera una fila*/
+			padding-left: 50%;       /* hacemos espacio para "encabezado de cada fila" */
+			border: none;
+			border-bottom: 1px solid #eee;
 		}
 
 		td:before {
@@ -11,7 +30,6 @@
 			width: 45%;
 			padding-right: 10px;
 		}
-
 
 		/* Agrega "encabezado" a la izquierda (before) de cada dato */
 		/* td:nth-of-type(1):before { content: "Nombre"; } */
