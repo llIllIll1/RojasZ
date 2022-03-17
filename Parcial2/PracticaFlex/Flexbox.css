@@ -1,0 +1,25 @@
+.contenedor {
+    display:flex;
+    width: 100vw;
+    height:100vh;
+    background-color: rgb(68, 87, 105);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items:stretch ;
+    align-content:center;
+}
+
+.caja {
+    width: 150px;
+    height: 150px;
+    background-color: rgb(30, 168, 168);
+    margin: 10px;
+    text-align: center;
+    flex-grow: .02;
+    flex-shrink: 1;
+}
+
+#c1{
+    align-self: flex-end!important;
+}
