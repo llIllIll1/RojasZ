@@ -1,0 +1,90 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Main {
+  display:flex;
+  font-display: row;
+  width: 100vw;
+  height: 100vh;
+}
+
+.SideBar {
+  background-color: rgba(124, 124, 124, 0.582);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.SideBar header {
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  line-height: 70px;
+  background: rgb(0, 0, 0);
+  user-select: none;
+}
+
+.SideBar ul a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  font-size: px;
+  color: #fff;
+  padding-left: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid black;
+  transition: 0.4s;
+  box-shadow: 7px 13px 37px rgba(0,0,0, 0.5);
+}
+
+.Content {
+  background-color: rgba(8, 106, 119, 0.788);
+  flex-grow: 1;
+  text-align: center;
+}
+
+
+@media screen and (max-width: 900px) {
+  .Main {
+    display: flex;
+    flex-direction:column-reverse;
+    justify-content: space-evenly;
+    
+  }
+  .SideBar {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+  }
+
+  a{
+    padding: 20px ; 
+    text-align:justify;
+}
+}
+
+@media screen and (max-width: 600px) {
+  .Main{
+      flex-direction: column;
+  }
+
+  .SideBar{
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+  }
+  a{
+      padding: 10px; 
+      text-align: center;
+  }
+}
