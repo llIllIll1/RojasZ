@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.contenedor {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(60, 60, 77);
+
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center; 
+    grid-auto-flow: dense;
+
+}
+
+.caja {
+    width: 150px;
+    height: 150px;
+    background-color: rgb(8, 95, 146);
+    text-align: center;
+    border-radius: 75px;
+}
+
+#caja1 {
+    /*
+    grid-column-start: 1;
+    grid-column-end: 3;  
+    grid-column: 1 / span 3;
+    */
+    background-color: brown;
+}
+
+.cajaEvent{
+    background-color: rgb(199, 32, 143);
+}
