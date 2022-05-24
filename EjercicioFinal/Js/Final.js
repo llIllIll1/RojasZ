@@ -2,7 +2,7 @@ $(document).ready(function () {
     $("#botonAjax").click(presionBoton);
     function presionBoton() {
         var parnum = $("#num").val();
-        $.get("Fetch.php", { num: parnum }, llegadaDatos);
+        $.get("./Php/Final.php", { num: parnum }, llegadaDatos);
     }
 
     function llegadaDatos(datos) {
@@ -10,7 +10,7 @@ $(document).ready(function () {
     }
 
     $('#btnjson').click(function () {
-        $.post('Fetch.php', {}, function (data) {
+        $.post('./Php/Final.php', {}, function (data) {
 
             console.log(data);
             $('#idCliente').val(data.idCliente);
@@ -54,7 +54,7 @@ $(document).ready(function () {
     $('#btnConsultaBD').click(function () {
         let parid = prompt("Teclee el ID a consultar");
 
-        $.post('getRegistroBD.php', { par1: parid }, function (data) {
+        $.post('./Php/getRegistroBD.php', { par1: parid }, function (data) {
             refrescar(data);
         }, 'json');
     });
@@ -71,7 +71,7 @@ $(document).ready(function () {
 
     document.getElementById("btnObtieneJsonFetch").addEventListener("click", function () {
 
-        let promesa = fetch('Fetch.php');
+        let promesa = fetch('./Php/Final.php');
 
         //Funcion cuadrado declarando la funcion
         //promesa.then(function (respuesta) {
@@ -90,7 +90,7 @@ $(document).ready(function () {
     });
 
     //
-    fetch('Fetch.php')
+    fetch('./Php/Final.php')
         .then(respuesta => respuesta.json())
         .then(datos => console.log(datos));
 })
