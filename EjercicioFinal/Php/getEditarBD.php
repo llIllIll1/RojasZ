@@ -12,6 +12,8 @@ $telDireccion = $_POST['partelDireccion'];
 $telCliente = $_POST['partelCliente'];
 $nomEquipoCliente = $_POST['parnomEquipoCliente'];
 $detalleCliente = $_POST['pardetalleCliente'];
+$tipo = $_POST['partipo'];
+$marcaEquipo = $_POST['parmarcaEquipo'];
 
 try {
     $con = new PDO("mysql:host=$hostname;dbname=$database;port=$port",$username,$password);
@@ -22,7 +24,8 @@ try {
 }
     try {
         $consultaSQL = "update `usuario` set `nom`='$nom',`telDireccion`='$telDireccion',`telCliente`='$telCliente'
-        ,`nomEquipoCliente`='$nomEquipoCliente',`detalleCliente`='$detalleCliente' where idCliente =".$idCliente;
+        ,`nomEquipoCliente`='$nomEquipoCliente',`detalleCliente`='$detalleCliente'
+        ,`tipoEquipo`='$tipo',`marcaEquipo`='$marcaEquipo' where idCliente =".$idCliente;
         $consulta = $con -> prepare($consultaSQL);
         $consulta -> execute();
         $resultado = $consulta -> fetch(PDO::FETCH_ASSOC);

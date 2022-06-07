@@ -16,138 +16,89 @@
             crossorigin="anonymous"></script>
 
       <script src="./Js/Final.js"></script>
-
-
 </head>
 
 <body>
-      <h1 id="enca">Encabezado de formuIario</h1>
+      <h1 id="enca">Formulario de una tienda de reparacion.</h1>
       <div class="container">
-            <form name="formulario1" method="GET" action="./Php/Final.php" class="form">
-                  <div class="form-group">
-                        <label for="idCliente" class="control-label">ID Usuario</label>
-                        <input id="idCliente" type="text" class="form-control" placeholder="Ingrese un identificador unico" />
-                        <div>
-                              <div class="form-group">
-                                    <label for="nom">Nombre</label>
-                                    <input id="nom" type="text" class="form-control"
-                                          placeholder="Ingresa el Nombre con sus Apellidos." name="nombre"
-                                          oninput="ajaxFunction();" />
-                              </div>
-                              <div class="form-group">
-                                    <label for="telDireccion">Direccion</label>
-                                    <input id="telDireccion" type="text" class="form-control" name="hora" size="20"
-                                          placeholder="Calle Numero Colonia y Codigo Postal" />
-                              </div>
-                              <div class="form-group">
-                                    <label for="telCliente">Telefono</label>
-                                    <input id="telCliente" type="text" class="form-control"
-                                          placeholder="(Lada)-Numero " />
-                              </div>
-                              <div class="form-group">
-                                    <label for="nomEquipoCliente">Nombre del Equipo</label>
-                                    <input id="nomEquipoCliente" type="text" class="form-control"
-                                          placeholder="Ingresa el nombre del equipo de computo" />
-                              </div>
-                              <div class="form-group">
-                                    <label for="detalleCliente">Detalles</label>
-                                    <input id="detalleCliente" type="text" class="form-control"
-                                          placeholder="Mencione si es que el equipo cuenta con detalles." />
-                              </div>
+            <form name="formulario1" method="GET" class="form">
+                  <div class="row">
+                        <div class="form-group col-sm-12 col-md-6 col-lg-4">
+                              <label for="idCliente" class="control-label">ID Usuario</label>
+                              <input id="idCliente" type="text" class="form-control"
+                                    placeholder="Ingrese un identificador unico" />
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6 col-lg-5">
+                              <label for="nom">Nombre</label>
+                              <input id="nom" type="text" class="form-control"
+                                    placeholder="Ingresa el Nombre con sus Apellidos." name="nombre" />
+                        </div>
+                        <div class="form-group col-sm-12 col-md-12 col-lg-3">
+                              <label for="telCliente">Telefono</label>
+                              <input id="telCliente" type="text" class="form-control" placeholder="(Lada)-Numero" />
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="form-group col-sm-12 col-md-12 col-lg-12">
+                              <label for="telDireccion">Direccion</label>
+                              <input id="telDireccion" type="text" class="form-control" name="hora" size="20"
+                                    placeholder="Calle Numero Colonia y Codigo Postal" />
+                        </div>
+                  </div>
+                  <div class="row">
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                              <label for="nomEquipoCliente">Modelo del Equipo</label>
+                              <input id="nomEquipoCliente" type="text" class="form-control"
+                                    placeholder="Ingresa el nombre del equipo de computo" />
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                              <label for="detalleCliente">Detalles</label>
+                              <input id="detalleCliente" type="text" class="form-control"
+                                    placeholder="Mencione si es que el equipo cuenta con detalles." />
+                        </div>
+                  </div>
+                  
+                  <div class="row">
+                        <div class="form-check col-sm-12 col-md-6 col-lg-6">
+                              <input class="form-check-input" type="radio" name="exampleRadios" id="gabinete"
+                                    value="Gabinete" checked>
+                              <label class="form-check-label" for="exampleRadios1">
+                                    Gabinete
+                              </label>
+                        </div>
+                        <div class="form-check col-sm-12 col-md-6 col-lg-6">
+                              <input class="form-check-input" type="radio" name="exampleRadios" id="laptop"
+                                    value="Laptop">
+                              <label class="form-check-label" for="exampleRadios2">
+                                    Laptop
+                              </label>
+                        </div>
+                  </div>
+                  
+                  <div class="row">
+                        <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                              <label class="mr-sm-2" for="inlineFormCustomSelect">Marca:</label>
+                              <select class="custom-select mr-sm-2" id="marcaEquipo">
+                                    <option selected value="selected">Marca...</option>
+                                    <option value="Acer">Acer</option>
+                                    <option value="Dell">Dell</option>
+                                    <option value="HP">HP</option>
+                                    <option value="Lenovo">Lenovo</option>
+                              </select>
+                        </div>
+                  </div>
 
-                              <button id="btn1" type="button" class="btn btn-primary" title="Dispara Alerta Js">Boton
-                                    1</button>
+                  <button id="btnConsultaBD" type="button" class="btn btn-primary"
+                        title="Consultar un registro de la BD" data-toggle="modal" data-target="#modal1">Consulta BD</button>
+                  <button id="btnAgregarBD" type="button" class="btn btn-success"
+                        title="Agregar un registro de la BD">Agregar BD</button>
+                  <button id="btnEditarBD" type="button" class="btn btn-warning"
+                        title="Editar un registro de la BD">Editar BD</button>
+                  <button id="btnEliminarBD" type="button" class="btn btn-danger"
+                        title="Eliminar un registro de la BD">Eliminar BD</button>
 
-                              <button id="btn2" type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#modal1">Boton 2</button>
-
-                              <button id="btn3" type="button" class="btn btn-primary" title="Dispara Alerta Js">Alerta
-                                    Js</button>
-
-                              <button id="btn4" type="button" class="btn btn-primary" title="Dispara Alerta Js">Alerta
-                                    Js</button>
-
-                              <button id="btn5" type="button" class="btn btn-primary"
-                                    title="Dispara Alerta Sweet">Sweet</button>
-
-                              <input id="botonAjax" type="button" class="btn btn-primary" title="Dispara Alerta Ajax"
-                                    value="Boton Ajax" />
-
-                              <button id="btnjson" type="button" class="btn btn-primary"
-                                    title="Obtiene Json">Json</button>
-
-                              <button id="btnCambiaHeaderP" type="button" class="btn btn-primary"
-                                    title="Obtiene promise">Promise</button>
-
-                              <button id="btnObtieneJsonFetch" type="button" class="btn btn-primary"
-                                    title="Obtiene Fetch">Fetch</button>
-
-                              <button id="btnConsultaBD" type="button" class="btn btn-susccess"
-                                    title="Obtiene registro de la BD">Consulta BD</button>
-
-                              <div id="alerta1" class="alert alert-warning alert-dismissible collapse" role="alert">
-                                    <h1>Encabezado de Alerta</h1>
-                                    <p>Comentario de Ia Alerta</p>
-                                    <button id="btncloseAlert" type="button" class="btn-close" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                    </button>
-                              </div>
-
-                              <div class="modal" id="modal1" tabindex="-1">
-                                    <div class="modal-dialog">
-                                          <div class="modal-content">
-                                                <div class="modal-header">
-                                                      <h5 class="modal-title">TituIo deI modeI</h5>
-                                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                      <p>
-                                                            Mensaje del modal
-                                                      </p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                      <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                      <button type="button" class="btn btn-primary">Save
-                                                            changes</button>
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-
-                              <script>
-                                    $(document).ready(function () {
-                                          $('#btn1').click(function () {
-                                                $('#alerta1').show();
-                                          });
-                                          $('#btncloseAlert').click(function () {
-                                                $('#alerta1').hide();
-                                          });
-
-                                          $('#btn2').click(function () {
-                                                console.log("cIick en btn2");
-                                          });
-
-                                          $('#btn3').click(function () {
-                                                $('.modal-body p').text('Se disparo el modal desde el boton 3')
-                                                $('#modal1').modal();
-                                          });
-
-                                          $('#btn4').click(function () {
-                                                $('.modal-body p').text('Se disparo el modal desde el boton 4')
-                                                $('#modal1').modal();
-                                          });
-
-                                          $('#btn5').click(function () {
-                                                swal("Good job!", "You clicked the button!", "success");
-                                          });
-
-                                    });
-                              </script>
             </form>
             <div id='resultado'></div>
-            <div>
                   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 <html>

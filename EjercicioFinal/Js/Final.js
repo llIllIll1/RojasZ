@@ -1,62 +1,19 @@
 $(document).ready(function () {
-    $("#botonAjax").click(presionBoton);
-    function presionBoton() {
-        var parnum = $("#num").val();
-        $.get("./Php/Final.php", { num: parnum }, llegadaDatos);
-    }
-
-    function llegadaDatos(datos) {
-        $('#resultado').html('<h2>Esto es una peticion Ajax' + '</h2>');
-    }
-
-    $('#btnjson').click(function () {
-        $.post('./Php/Final.php', {}, function (data) {
-
-            console.log(data);
-            $('#idCliente').val(data.idCliente);
-            $('#nom').val(data.nom);
-            $('#telDireccion').val(data.telDireccion);
-            $('#telCliente').val(data.telCliente);
-            $('#nomEquipoCliente').val(data.nomEquipoCliente);
-            $('#detalleCliente').val(data.detalleCliente);
-
-        }, 'json');
-    });
-
-    $("#btnCambiaHeaderP").click(function () {
-
-        /*let promesa = new Promise (function(resolve, reject){
-            var solicitud = new XMLHttpRequest();
-            solicitud.onreadystatechange = function() {
-                if(solicitud.readyState == 4 && solicitud.status == 200) {
-                    resolve(solicitud.responseText);
-                }}
-                solicitud.open("GET","getHeader.txt", true);
-                solicitud.send();
-        });
-        promesa.then(function(value) {document.getElementById("enca").innerHTML = value;});*/
-
-        new Promise(function (resolve, reject) {
-            var solicitud = new XMLHttpRequest();
-            solicitud.onreadystatechange = function () {
-                if (solicitud.readyState == 4 && solicitud.status == 200) {
-                    resolve(solicitud.responseText);
-                }
-            };
-            solicitud.open("GET", "getHeader.txt", true);
-            solicitud.send();
-        }).then(value => document.getElementById("enca").innerHTML = value);
-    });
-
     // Obtenemos un registro json del la Base de datos
     // usando el metodo $.post() de Jquery
     // $.post(URL,parametros,funciondeRetorno(),dato)
     $('#btnConsultaBD').click(function () {
-        let parid = prompt("Teclee el ID a consultar");
-
-        $.post('./Php/getRegistroBD.php', { par1: parid }, function (data) {
-            refrescar(data);
-        }, 'json');
+        swal("Ingresa el ID del usuario a consultar:", {
+            content: "input",
+          }).then((parid) => {
+            try {    
+                  $.post('./Php/getRegistroBD.php',{par1:parid},function(data){      
+                    refrescar(data);                
+                  },'json');
+              } catch (exception) {
+                    swal("Error", "Ha ocurrido un error", "error");
+              }
+          });    
     });
 
     function refrescar(objeto) {
@@ -67,31 +24,89 @@ $(document).ready(function () {
         $('#telCliente').val(objeto.telCliente);
         $('#nomEquipoCliente').val(objeto.nomEquipoCliente);
         $('#detalleCliente').val(objeto.detalleCliente);
+        $('#marcaEquipo').val(objeto.marcaEquipo);
+            if (objeto.tipoEquipo == "Gabinete" ) {
+                document.getElementById('gabinete').checked = true;
+            }
+            if (objeto.tipoEquipo == "Laptop") {
+                document.getElementById('laptop').checked = true;
+            }
     }
 
-    document.getElementById("btnObtieneJsonFetch").addEventListener("click", function () {
-
-        let promesa = fetch('./Php/Final.php');
-
-        //Funcion cuadrado declarando la funcion
-        //promesa.then(function (respuesta) {
-        //    console.log(respuesta); console.log(respuesta.json());
-        //});
-
-
-        //Funcion Flecha
-        //promesa.then( (respuesta) => respuesta.json());
-        //});
-
-
-        //Encadenamiento de promesas
-        promesa.then(respuesta => respuesta.json())
-            .then(datos => console.log(datos));
+    $('#btnAgregarBD').click(function() {
+        try {
+            let idCliente = document.getElementById("idCliente").value;
+            let nom = document.getElementById("nom").value;
+            let telDireccion = document.getElementById("telDireccion").value;
+            let telCliente = document.getElementById("telCliente").value;
+            let nomEquipoCliente = document.getElementById("nomEquipoCliente").value;
+            let detalleCliente = document.getElementById("detalleCliente").value;
+            //Combo
+            let marcaEquipo = document.getElementById("marcaEquipo").value;
+            //Raddio button
+            let tipo;
+            if (document.getElementById('gabinete').checked == true) {
+                tipo = "Gabinete";
+            }
+            if (document.getElementById('laptop').checked == true) {
+                tipo = "Laptop";
+            }
+            if (idCliente == "" || nom == "" || telDireccion == "" || telCliente == "" || 
+            nomEquipoCliente == "" || detalleCliente == "" || marcaEquipo == "") {
+                swal("Error", "Revise que no tenga campos vacios", "error");
+            } else {
+                $.post('Php/getAgregarBD.php',{paridCliente:idCliente, parNom:nom, partelDireccion:telDireccion, partelCliente:telCliente, 
+                    parnomEquipoCliente:nomEquipoCliente, pardetalleCliente:detalleCliente, parmarcaEquipo:marcaEquipo, partipo:tipo},
+                {},'json');
+                swal("Agregando un Cliente","Se ha agregado un cliente correctamente","success");
+            }
+        } catch (exception) {
+            swal("Error","Ha ocurrido un error","error");
+        }
     });
 
-    //
-    fetch('./Php/Final.php')
-        .then(respuesta => respuesta.json())
-        .then(datos => console.log(datos));
+    $('#btnEditarBD').click(function() {
+        try {
+            let idCliente = document.getElementById("idCliente").value;
+            let nom = document.getElementById("nom").value;
+            let telDireccion = document.getElementById("telDireccion").value;
+            let telCliente = document.getElementById("telCliente").value;
+            let nomEquipoCliente = document.getElementById("nomEquipoCliente").value;
+            let detalleCliente = document.getElementById("detalleCliente").value;
+            //Combo
+            let marcaEquipo = document.getElementById("marcaEquipo").value;
+            //Raddio button
+            let tipo;
+            if (document.getElementById('gabinete').checked == true) {
+                tipo = "Gabinete";
+            }
+            if (document.getElementById('laptop').checked == true) {
+                tipo = "Laptop";
+            }
+            if (idCliente == "" || nom == "" || telDireccion == "" || telCliente == "" || 
+            nomEquipoCliente == "" || detalleCliente == "" || marcaEquipo == "") {
+                swal("Error", "Revise que no tenga campos vacios", "error");
+            } else {
+                $.post('Php/getEditarBD.php',{paridCliente:idCliente, parNom:nom, partelDireccion:telDireccion, partelCliente:telCliente, 
+                    parnomEquipoCliente:nomEquipoCliente, pardetalleCliente:detalleCliente, parmarcaEquipo:marcaEquipo, partipo:tipo},
+                {},'json');
+                swal("Modificar Cliente","Se ha modificado el cliente correctamente","success");
+            }
+        } catch (exception) {
+            swal("Error","Ha ocurrido un error","error");
+        }
+    });
+
+    $('#btnEliminarBD').click(function() {
+        try {
+            let idCliente = document.getElementById("idCliente").value;
+            $.post('Php/getEliminarBD.php',{paridCliente:idCliente},function(data){
+                swal("Borrar cliente", "Se ha borrado el cliente", "success");
+            },'json');
+        } catch (error) {
+            swal("Error", "Ha ocurrido un error", "error");
+        }
+    });
+
 })
 //});

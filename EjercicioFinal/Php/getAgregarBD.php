@@ -14,6 +14,8 @@
     $telCliente = $_POST['partelCliente'];
     $nomEquipoCliente = $_POST['parnomEquipoCliente'];
     $detalleCliente = $_POST['pardetalleCliente'];
+    $tipo = $_POST['partipo'];
+    $marcaEquipo = $_POST['parmarcaEquipo'];
 
     try {
         $con = new PDO("mysql:host=$hostname;dbname=$database;port=$port",$username,$password);
@@ -24,8 +26,9 @@
     }
 
     try {
-        $consultaSQL = "INSERT INTO `usuario`(`idCliente`, `nom`, `telDireccion`, `telCliente`, `nomEquipoCliente`, `detalleCliente`) 
-        VALUES ('$idCliente','$nom','$telDireccion','$telCliente','$nomEquipoCliente','$detalleCliente')";
+        $consultaSQL = "INSERT INTO `usuario`(`idCliente`, `nom`, `telDireccion`, `telCliente`, `nomEquipoCliente`, 
+        `detalleCliente`,`tipoEquipo`, `marcaEquipo`) 
+        VALUES ('$idCliente','$nom','$telDireccion','$telCliente','$nomEquipoCliente','$detalleCliente','$tipo','$marcaEquipo')";
         $consulta = $con -> prepare($consultaSQL);
         $consulta -> execute();
         //$resultado = $consulta -> fetch(PDO::FETCH_ASSOC);

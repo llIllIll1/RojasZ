@@ -1,7 +1,6 @@
 <?php
 
 $iduser=$_POST['par1'];
-
 $hostname='localhost';
 $database='L19100249';
 $username='root';
@@ -15,8 +14,6 @@ try {
     echo $e->getMessage();
     exit();
 }
-
-//$con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 try {
 $consultaSql = "select * from usuario where idCliente=".$iduser;
